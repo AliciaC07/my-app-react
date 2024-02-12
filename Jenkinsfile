@@ -11,5 +11,9 @@ pipeline {
                 )
             }
         }
+        stage("Build image"){
+            sh 'docker build -t aliciac07/react-app:latest .'
+
+        }
     }
 }
