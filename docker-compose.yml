@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app-react:
+    image: my-react-app:latest
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+    ports:
+      - "8084:80"

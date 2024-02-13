@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    
+    environment {
+        DOCKER_STACK_NAME = "my-stack-test"
+        DOCKER_COMPOSE_FILE = "docker-compose.yml"
+        DOCKER_IMAGE = "my-react-app:latest"
+    }
+    
+    stages {
+        stage("Clone Git Repository") {
+            steps {
+                git(
+                    url: "https://github.com/AliciaC07/my-app-react.git",
+                    branch: "master",
+                    changelog: true,
+                    poll: true
+                )
+            }
+        }
+                
+        stage('Deploy to Docker Swarm') {
+            steps {
+                sh "docker stack deploy -c ${DOCKER_COMPOSE_FILE} ${DOCKER_STACK_NAME}"
+            }
+        }
+    }
+}
