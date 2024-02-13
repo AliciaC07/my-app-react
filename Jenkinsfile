@@ -13,9 +13,14 @@ pipeline {
         }
         stage("Build image"){
             steps {
-            sh 'docker build -t aliciac07/react-app:latest .'
-            }
+                script {
+                    // Define the Dockerfile location
+                    def dockerfileLocation = '.'
 
+                    // Build Docker image
+                    sh "docker build -t aliciac07/react-app:latest -f ${dockerfileLocation} ."
+                }
+            }
         }
     }
 }
