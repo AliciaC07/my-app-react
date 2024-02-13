@@ -12,15 +12,17 @@ pipeline {
             }
         }
         stage("Build image"){
-            steps {
-                script {
-                    // Define the Dockerfile location
-                    def dockerfileLocation = '.'
+    steps {
+        script {
+            // Define the Dockerfile location
+            def dockerfileLocation = '.'
 
-                    // Build Docker image
-                    sh "docker build -t aliciac07/react-app:latest -f ${dockerfileLocation} ."
-                }
-            }
+            // Build Docker image
+            def dockerBuildCmd = "docker build -t aliciac07/react-app:latest -f ${dockerfileLocation} ."
+            echo "Executing Docker build command: ${dockerBuildCmd}"
+            sh dockerBuildCmd
         }
+    }
+}
     }
 }
