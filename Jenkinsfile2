@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_STACK_NAME = "my-stack-test"
         DOCKER_COMPOSE_FILE = "docker-compose.yml"
-        DOCKER_IMAGE = "my-react-app:latest"
+        DOCKER_IMAGE = "aliciac07/react-app:latest"
     }
     
     stages {
