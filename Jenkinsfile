@@ -12,17 +12,12 @@ pipeline {
             }
         }
         stage("Build image"){
-    steps {
-        script {
-            // Define the Dockerfile location
-            def dockerfileLocation = '.'
-
-            // Build Docker image
-            def dockerBuildCmd = "docker build -t aliciac07/react-app:latest -f ${dockerfileLocation} ."
-            echo "Executing Docker build command: ${dockerBuildCmd}"
-            sh dockerBuildCmd
+            steps {
+                script {
+                    // Build Docker image using the Dockerfile located in the root folder of the cloned repository
+                    sh "docker build -t aliciac07/react-app:latest ."
+                }
+            }
         }
-    }
-}
     }
 }
